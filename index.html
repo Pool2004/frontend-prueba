@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comfandi NutriSalud - Plataforma Educativa Nutricional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Header principal -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Comfandi Logo" class="brand-logo">
+        <div class="brand-text">
+          <span class="brand-title">Comfandi NutriSalud</span>
+          <span class="brand-subtitle">Solución Tecnológica Educativa Nutricional Estudiantil</span>
+        </div>
+      </div>
+      <nav class="app-nav">
+        <button class="nav-btn active" data-tab="tab-dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="9" rx="1" />
+            <rect x="14" y="3" width="7" height="5" rx="1" />
+            <rect x="14" y="12" width="7" height="9" rx="1" />
+            <rect x="3" y="16" width="7" height="5" rx="1" />
+          </svg>
+          Dashboard
+        </button>
+        <button class="nav-btn" data-tab="tab-registro">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="8.5" cy="7" r="4" />
+            <line x1="20" y1="8" x2="20" y2="14" />
+            <line x1="17" y1="11" x2="23" y2="11" />
+          </svg>
+          Registrar Estudiante
+        </button>
+        <button class="nav-btn" data-tab="tab-directorio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          Seguimiento y Registros
+        </button>
+
+        <button class="nav-btn" data-tab="tab-guias">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+          </svg>
+          Guías de Alerta
+        </button>
+      </nav>
+      <div class="header-status">
+        <span class="status-indicator online"></span>
+        <span class="status-text">Backend Activo (TXT Storage)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="main-container">
+
+    <!-- TAB 1: DASHBOARD -->
+    <section id="tab-dashboard" class="tab-content active">
+      <div class="page-title-box">
+        <h1>Panel de Control Nutricional Estudiantil</h1>
+        <p>Visión general del estado ponderal y alertas pedagógicas de la institución educativa.</p>
+      </div>
+
+      <!-- Tarjetas de métricas rápidas -->
+      <div class="metrics-grid">
+        <div class="metric-card card-blue">
+          <div class="metric-header">
+            <span class="metric-title">Total Estudiantes</span>
+            <div class="metric-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+              </svg>
+            </div>
+          </div>
+          <div class="metric-value" id="stat-total">0</div>
+          <div class="metric-footer">Registrados en la base de datos</div>
+        </div>
+
+        <div class="metric-card card-teal">
+          <div class="metric-header">
+            <span class="metric-title">Promedio IMC</span>
+            <div class="metric-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 20V10" />
+                <path d="M12 20V4" />
+                <path d="M6 20v-6" />
+              </svg>
+            </div>
+          </div>
+          <div class="metric-value" id="stat-promedio-imc">0.0</div>
+          <div class="metric-footer">Índice de Masa Corporal Promedio</div>
+        </div>
+
+        <div class="metric-card card-green">
+          <div class="metric-header">
+            <span class="metric-title">Peso Normal</span>
+            <div class="metric-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+            </div>
+          </div>
+          <div class="metric-value" id="stat-normal-count">0</div>
+          <div class="metric-footer">Estudiantes en rango óptimo</div>
+        </div>
+
+        <div class="metric-card card-orange">
+          <div class="metric-header">
+            <span class="metric-title">Atención Requerida</span>
+            <div class="metric-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+            </div>
+          </div>
+          <div class="metric-value" id="stat-atencion-pct">0%</div>
+          <div class="metric-footer">Bajo peso, sobrepeso u obesidad</div>
+        </div>
+      </div>
+
+      <!-- Sección de distribución y resumen -->
+      <div class="dashboard-grid">
+        <div class="panel-card">
+          <div class="panel-header">
+            <h3>Distribución por Clasificación de IMC</h3>
+          </div>
+          <div class="distribution-list">
+            <div class="dist-item">
+              <div class="dist-info">
+                <span class="dist-label">Bajo peso (&lt; 18.5)</span>
+                <span class="dist-count" id="count-bajo-peso">0</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill fill-yellow" id="bar-bajo-peso" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div class="dist-item">
+              <div class="dist-info">
+                <span class="dist-label">Peso normal (18.5 - 24.9)</span>
+                <span class="dist-count" id="count-peso-normal">0</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill fill-green" id="bar-peso-normal" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div class="dist-item">
+              <div class="dist-info">
+                <span class="dist-label">Sobrepeso (25.0 - 29.9)</span>
+                <span class="dist-count" id="count-sobrepeso">0</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill fill-orange" id="bar-sobrepeso" style="width: 0%"></div>
+              </div>
+            </div>
+
+            <div class="dist-item">
+              <div class="dist-info">
+                <span class="dist-label">Obesidad (&ge; 30.0)</span>
+                <span class="dist-count" id="count-obesidad">0</span>
+              </div>
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill fill-red" id="bar-obesidad" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="panel-header">
+            <h3>Acciones Rápidas y Almacenamiento</h3>
+          </div>
+          <div class="storage-info-box">
+            <div class="info-row">
+              <span class="info-key">Método de Almacenamiento:</span>
+              <span class="info-val highlight">Archivo de texto plano (estudiantes.txt)</span>
+            </div>
+
+          </div>
+          <div class="quick-actions">
+            <button class="btn btn-primary" onclick="switchTab('tab-registro')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Nuevo Registro de Estudiante
+            </button>
+            <button class="btn btn-secondary" onclick="exportarCSV()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Exportar Reporte de Datos
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: REGISTRO DE ESTUDIANTE -->
+    <section id="tab-registro" class="tab-content">
+      <div class="page-title-box">
+        <h1>Registro y Evaluación Nutricional de Estudiantes</h1>
+        <p>Ingrese los datos antropométricos del estudiante para calcular automáticamente el IMC y generar la alerta
+          pedagógica.</p>
+      </div>
+
+      <div class="form-layout-grid">
+        <!-- Formulario -->
+        <div class="panel-card">
+          <form id="form-estudiante" onsubmit="guardarEstudiante(event)">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="documento">Documento de Identidad *</label>
+                <input type="text" id="documento" required placeholder="Ej. 1005123456">
+              </div>
+
+              <div class="form-group">
+                <label for="nombre">Nombre Completo *</label>
+                <input type="text" id="nombre" required placeholder="Ej. Ana María Torres">
+              </div>
+
+              <div class="form-group">
+                <label for="edad">Edad (Años) *</label>
+                <input type="number" id="edad" min="3" max="25" required placeholder="Ej. 12">
+              </div>
+
+              <div class="form-group">
+                <label for="grado">Grado Escolar *</label>
+                <select id="grado" required>
+                  <option value="">Seleccione el grado...</option>
+                  <option value="Transición">Transición / Preescolar</option>
+                  <option value="1° Primaria">1° Primaria</option>
+                  <option value="2° Primaria">2° Primaria</option>
+                  <option value="3° Primaria">3° Primaria</option>
+                  <option value="4° Primaria">4° Primaria</option>
+                  <option value="5° Primaria">5° Primaria</option>
+                  <option value="6° Secundaria">6° Secundaria</option>
+                  <option value="7° Secundaria">7° Secundaria</option>
+                  <option value="8° Secundaria">8° Secundaria</option>
+                  <option value="9° Secundaria">9° Secundaria</option>
+                  <option value="10° Media Técnica">10° Media Técnica</option>
+                  <option value="11° Media Técnica">11° Media Técnica</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="genero">Género *</label>
+                <select id="genero" required>
+                  <option value="">Seleccione el género...</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="peso">Peso (Kilogramos - kg) *</label>
+                <input type="number" step="0.1" id="peso" min="5" max="250" required placeholder="Ej. 42.5"
+                  oninput="actualizarPreviewIMC()">
+              </div>
+
+              <div class="form-group">
+                <label for="estatura">Estatura (Centímetros - cm) *</label>
+                <input type="number" step="0.5" id="estatura" min="40" max="230" required placeholder="Ej. 150.0"
+                  oninput="actualizarPreviewIMC()">
+              </div>
+
+              <div class="form-group full-width">
+                <label for="observaciones">Observaciones Docentes / Hábitos</label>
+                <textarea id="observaciones" rows="3"
+                  placeholder="Observaciones de conducta, fatiga, concentracion u otros hábitos observados..."></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-lg" id="btn-submit-form">
+                Guardar Registro en Archivo de Texto
+              </button>
+              <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">
+                Limpiar Formulario
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Panel lateral con vista previa del cálculo en tiempo real -->
+        <div class="panel-card preview-card">
+          <div class="preview-header">
+            <h3>Cálculo en Tiempo Real</h3>
+            <span class="preview-tag">Pensamiento Computacional</span>
+          </div>
+
+          <div class="preview-body">
+            <div class="imc-display-box">
+              <span class="imc-label">Índice de Masa Corporal (IMC)</span>
+              <div class="imc-number" id="preview-imc">--.--</div>
+              <span class="imc-badge" id="preview-badge">Esperando datos</span>
+            </div>
+
+            <div class="formula-info">
+              <strong>Fórmula Aplicada:</strong>
+              <code>IMC = Peso (kg) / (Estatura (m))²</code>
+            </div>
+
+            <div class="preview-recommendation-box" id="preview-rec-box">
+              <h4 id="preview-rec-title">Alerta Educativa</h4>
+              <p id="preview-rec-text">Ingrese peso y estatura para visualizar la orientación nutricional inmediata.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: DIRECTORIO DE SEGUIMIENTO -->
+    <section id="tab-directorio" class="tab-content">
+      <div class="page-title-box">
+        <h1>Directorio y Seguimiento Estudiantil</h1>
+        <p>Consulte y gestione la información registrada en el almacenamiento en texto plano.</p>
+      </div>
+
+      <div class="panel-card">
+        <div class="filter-bar">
+          <div class="search-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" id="input-buscar" placeholder="Buscar por estudiante o documento..."
+              oninput="cargarEstudiantes()">
+          </div>
+
+          <div class="filter-group">
+            <select id="filter-clasificacion" onchange="cargarEstudiantes()">
+              <option value="">Todas las clasificaciones</option>
+              <option value="Bajo peso">Bajo peso</option>
+              <option value="Peso normal">Peso normal</option>
+              <option value="Sobrepeso">Sobrepeso</option>
+              <option value="Obesidad">Obesidad</option>
+            </select>
+
+            <select id="filter-grado" onchange="cargarEstudiantes()">
+              <option value="">Todos los grados</option>
+              <option value="1° Primaria">1° Primaria</option>
+              <option value="2° Primaria">2° Primaria</option>
+              <option value="3° Primaria">3° Primaria</option>
+              <option value="4° Primaria">4° Primaria</option>
+              <option value="5° Primaria">5° Primaria</option>
+              <option value="6° Secundaria">6° Secundaria</option>
+              <option value="7° Secundaria">7° Secundaria</option>
+              <option value="8° Secundaria">8° Secundaria</option>
+              <option value="9° Secundaria">9° Secundaria</option>
+              <option value="10° Media Técnica">10° Media Técnica</option>
+              <option value="11° Media Técnica">11° Media Técnica</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Doc. / ID</th>
+                <th>Estudiante</th>
+                <th>Edad / Grado</th>
+                <th>Peso / Estatura</th>
+                <th>IMC</th>
+                <th>Estado Nutricional</th>
+                <th>Alerta</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-estudiantes">
+              <!-- Se puebla dinámicamente con JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- TAB 5: GUÍAS DE ALERTA EDUCATIVA -->
+    <section id="tab-guias" class="tab-content">
+      <div class="page-title-box">
+        <h1>Sistema de Alertas Nutricionales y Guía Pedagógica</h1>
+        <p>Criterios de clasificación, protocolos de atención preventiva y estrategias de autocuidado escolar.</p>
+      </div>
+
+      <div class="guides-grid">
+        <div class="guide-card border-yellow">
+          <div class="guide-header">
+            <span class="badge badge-yellow">Atención Preventiva</span>
+            <h3>Bajo Peso (IMC &lt; 18.5)</h3>
+          </div>
+          <div class="guide-body">
+            <p><strong>Manifestaciones escolares:</strong> Fatiga temprana, dificultad de concentración, sensación de
+              frío continuo.</p>
+            <p><strong>Orientación Nutricional:</strong> Incrementar el consumo de proteínas de alta calidad, semillas,
+              cereales enteros y verduras ricas en micronutrientes.</p>
+            <p><strong>Estrategia Pedagógica:</strong> Coordinación con el restaurante escolar y acompañamiento en
+              loncheras saludables.</p>
+          </div>
+        </div>
+
+        <div class="guide-card border-green">
+          <div class="guide-header">
+            <span class="badge badge-green">Hábitos Óptimos</span>
+            <h3>Peso Normal (IMC 18.5 - 24.9)</h3>
+          </div>
+          <div class="guide-body">
+            <p><strong>Manifestaciones escolares:</strong> Nivel de energía estable, buen rendimiento físico y
+              cognitivo.</p>
+            <p><strong>Orientación Nutricional:</strong> Mantener una dieta equilibrada dividida en 3 comidas
+              principales y 2 refrigerios nutritivos.</p>
+            <p><strong>Estrategia Pedagógica:</strong> Reforzar hábitos de hidratación constante (agua potable) y
+              promover el liderazgo en actividades deportivas.</p>
+          </div>
+        </div>
+
+        <div class="guide-card border-orange">
+          <div class="guide-header">
+            <span class="badge badge-orange">Atención Preventiva</span>
+            <h3>Sobrepeso (IMC 25.0 - 29.9)</h3>
+          </div>
+          <div class="guide-body">
+            <p><strong>Manifestaciones escolares:</strong> Cansancio al realizar ejercicio prolongado, preferencia por
+              actividades sedentarias.</p>
+            <p><strong>Orientación Nutricional:</strong> Disminución progresiva de azúcares refinados, bebidas gaseosas
+              y alimentos ultraprocesados.</p>
+            <p><strong>Estrategia Pedagógica:</strong> Incentivar recreos activos, deportes colectivos y concientización
+              sobre porciones adecuadas.</p>
+          </div>
+        </div>
+
+        <div class="guide-card border-red">
+          <div class="guide-header">
+            <span class="badge badge-red">Alerta Prioritaria</span>
+            <h3>Obesidad (IMC &ge; 30.0)</h3>
+          </div>
+          <div class="guide-body">
+            <p><strong>Manifestaciones escolares:</strong> Agotamiento físico prematuro, posible aislamiento en clases
+              de educación física.</p>
+            <p><strong>Orientación Nutricional:</strong> Intervención estructurada nutricional con sustitución de grasas
+              saturadas por grasas saludables y vegetales.</p>
+            <p><strong>Estrategia Pedagógica:</strong> Acompañamiento multidisciplinario (psicorientación y salud
+              escolar), evitando la estigmatización y fomentando el autocuidado.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal de Detalle de Estudiante -->
+  <div id="modal-detalle" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-nombre">Detalle del Estudiante</h3>
+        <button class="modal-close-btn" onclick="cerrarModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body-content">
+        <!-- Contenido dinámico -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>Comfandi de 🩵</p>
+      <p class="footer-sub">Desarrollado por JeanDev | Comfandi prueba nivel 2 =)!!</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
