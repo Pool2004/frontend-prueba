@@ -5,10 +5,10 @@
 
 // Base URL para comunicación con Backend FastAPI
 // Si la aplicación está servida directamente por FastAPI en el puerto 8000, usamos window.location.origin/api.
-// De lo contrario (servida por Live Server en puerto 5500, file://, etc.), apuntamos explícitamente a http://127.0.0.1:8000/api.
+// De lo contrario (servida por Live Server en puerto 5500, file://, etc.), apuntamos explícitamente a https://backendnutrisalud.onrender.com/api.
 const API_BASE_URL = (window.location.port === "8000" || window.location.origin.includes(":8000"))
   ? `${window.location.origin}/api`
-  : "http://127.0.0.1:8000/api";
+  : "https://backendnutrisalud.onrender.com/api";
 
 /**
  * Parsea la respuesta HTTP de manera segura sin lanzar 'Unexpected end of JSON input'.
@@ -384,7 +384,7 @@ async function exportarCSV() {
       `"${e.fecha_registro}"`
     ]);
 
-    const csvContent = "data:text/csv;charset=utf-8," 
+    const csvContent = "data:text/csv;charset=utf-8,"
       + [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
 
     const encodedUri = encodeURI(csvContent);
