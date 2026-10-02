@@ -8,7 +8,7 @@
 // De lo contrario (servida por Live Server en puerto 5500, file://, etc.), apuntamos explícitamente a https://backendnutrisalud.onrender.com/api.
 const API_BASE_URL = (window.location.port === "8000" || window.location.origin.includes(":8000"))
   ? `${window.location.origin}/api`
-  : "https://backendnutrisalud.onrender.com/api";
+  : "https://backendnutrisalud.onrender.com";
 
 /**
  * Parsea la respuesta HTTP de manera segura sin lanzar 'Unexpected end of JSON input'.
